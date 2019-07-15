@@ -1,0 +1,27 @@
+.articles-container {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.single-article {
+    text-decoration: none;
+    background: rgb(190, 253, 255);
+    color: black;
+    padding: 1em;
+    border-radius: 10px;
+}
+
+.article-title {
+    text-decoration: none;
+    color: rgb(77, 70, 70)
+}
+
+.paragraph {
+    color: rgb(70, 14, 23);
+}
+
+.read-more {
+    text-decoration: none;
+    color: rgb(66, 66, 66);
+}
