@@ -20,12 +20,12 @@ class FullOneArticle extends React.Component {
         }))
     }
 
-    handleVoteUp = id => {
-        voteForArticle(id, {inc_votes: 1})
+    handleVoteUp = () => {
+        voteForArticle(this.props.id, {inc_votes: 1})
     }
 
-    handleVoteDown = id => {
-        voteForArticle(id, {inc_votes: -1})
+    handleVoteDown = () => {
+        voteForArticle(this.props.id, {inc_votes: -1})
     }
 
     render() {
@@ -45,9 +45,9 @@ class FullOneArticle extends React.Component {
                 <p>Votes: {oneArticle.votes}</p>
                 <p>Comments: {oneArticle.comment_count}</p>
 
-                <button onClick={()=> this.handleVoteUp(this.props.id)}>Thumbs Up 👍</button>
+                <button onClick={this.handleVoteUp}>Thumbs Up 👍</button>
                 
-                <button onClick={()=> this.handleVoteDown(this.props.id)}>Thumbs Down 👎</button>
+                <button onClick={this.handleVoteDown}>Thumbs Down 👎</button>
                 
                 <button onClick={this.handleShowComments}>{this.state.buttonShowHideComments[0]}</button>
                 {this.state.isCommentVisible && <Comments user={this.props.user} id={this.props.id}/>}

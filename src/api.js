@@ -39,3 +39,4 @@ export const voteForArticle = async (article_id, newVote) => {
     const { data } = await axios.patch(`${BASE_URL}/api/articles/${article_id}`, newVote);
     return data
 }
+
