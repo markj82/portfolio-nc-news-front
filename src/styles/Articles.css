@@ -1,12 +1,20 @@
 .articles-container {
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10px 20px;
+
+}
+
+.select-to-sort {
+    justify-self: start;
+    grid-column: 1 / 4
 }
 
 .single-article {
     text-decoration: none;
-    background: rgb(190, 253, 255);
+    background: rgb(255, 255, 255);
     color: black;
     padding: 1em;
     border-radius: 10px;
@@ -25,3 +33,17 @@
     text-decoration: none;
     color: rgb(66, 66, 66);
 }
+
+.sub-heading-one-article {
+    font-size: 0.7em;
+}
+
+.sub-heading-date {
+    display: inline;
+}
+
+.sub-heading-topic {
+    display: block;
+    font-size: 0.7em;
+}
+

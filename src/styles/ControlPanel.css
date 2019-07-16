@@ -1,0 +1,96 @@
+.control-panel-main {
+    background: rgb(255, 255, 255);
+    width: 100vw;
+    position: fixed;
+    height: 3em;;
+    top: 0;
+    grid-gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    align-items: center
+}
+
+.item {
+    text-align: center;
+    
+}
+
+.logo {
+    height: 2em;
+    padding-top:7px;
+    padding-left: 7px;
+}
+
+.login-user {
+    position: relative;
+    float: right;
+}
+
+@media (max-width: 1000px) {
+    .control-panel-main {
+      display: grid;
+      padding: 0;
+      margin: 0;
+      grid-template-columns: auto auto;
+      grid-gap: 10px;
+      margin-bottom: 30px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .control-panel-main {
+      display: grid;
+      padding: 0;
+      margin: 0;
+      grid-template-columns: auto;
+      grid-gap: 10px;
+    }
+    .articles-container {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        padding-top: 100px
+    }
+  }
+
+  /* drop down view by topics */
+
+  .dropbtn {
+  
+  
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown:hover .dropbtn {
+    background-color: #d3ecd3;
+  }
