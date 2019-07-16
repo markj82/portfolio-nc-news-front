@@ -5,7 +5,7 @@ import { Link } from '@reach/router';
 import { getAllArticles } from '../api'
 
 
-// API
+// API 
 // https://nc-mj-news.herokuapp.com/api/articles
 
 class Articles extends React.Component {

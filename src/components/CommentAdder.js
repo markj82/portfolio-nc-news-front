@@ -25,6 +25,7 @@ class CommentAdder extends React.Component {
 
     render() { 
         const { body } = this.state;
+        
         return ( 
             <form onSubmit={this.handleSubmit} className="add-form-comment">
                 <label htmlFor="body">
