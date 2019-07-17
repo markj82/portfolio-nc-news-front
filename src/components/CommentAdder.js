@@ -4,7 +4,7 @@ import { postComment } from '../api';
 class CommentAdder extends React.Component {
     state = { 
         body: ''
-     }
+    }
 
     handleChange = e => {
         const { value } = e.target;
@@ -17,6 +17,7 @@ class CommentAdder extends React.Component {
         e.preventDefault();
         const { body } = this.state;
         const { user, id } = this.props;
+        if (body === "") return alert('This field cannot be empty!')
         postComment(id, {body, username: user})
             .then(res => {
                 console.log(res, '<<< comment from comment adder')
@@ -25,7 +26,6 @@ class CommentAdder extends React.Component {
 
     render() { 
         const { body } = this.state;
-        
         return ( 
             <form onSubmit={this.handleSubmit} className="add-form-comment">
                 <label htmlFor="body">
