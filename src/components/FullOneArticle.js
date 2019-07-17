@@ -11,12 +11,10 @@ class FullOneArticle extends React.Component {
     state = {
         oneArticle: null,
         isCommentVisible: false,
-        buttonShowHideComments: ['Show all comments', 'Hide all comments'],
         err: null
     }
 
     handleShowComments = () => {
-        console.log('show comments button')
         this.setState(prevState => ({
             isCommentVisible: !prevState.isCommentVisible
         }))
@@ -31,8 +29,14 @@ class FullOneArticle extends React.Component {
     }
 
     render() {
-        const { oneArticle } = this.state
+        const { oneArticle, isCommentVisible } = this.state
         if (this.state.err) return <ErrorPage details={this.state.err}/>
+        let buttonShowHide;
+        if(isCommentVisible) {
+            buttonShowHide = <button onClick={this.handleShowComments}>Hide all comments</button>
+        } else {
+            buttonShowHide = <button onClick={this.handleShowComments}>Show all comments</button>
+        }
         return (
            
         oneArticle ? (
@@ -51,7 +55,8 @@ class FullOneArticle extends React.Component {
                 
                 <button onClick={this.handleVoteDown}>Thumbs Down 👎</button>
                 
-                <button onClick={this.handleShowComments}>{this.state.buttonShowHideComments[0]}</button>
+                {buttonShowHide}
+
                 {this.state.isCommentVisible && <Comments user={this.props.user} id={this.props.id}/>}
             </div>
          ) : null

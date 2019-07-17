@@ -39,6 +39,7 @@ class Comments extends React.Component {
     }
 
     render() { 
+        const { user } = this.props
         const commentsToShow = this.state.comments.map(comment => {
             return (
                 <div key={comment.comment_id}>
@@ -47,7 +48,10 @@ class Comments extends React.Component {
                     <p>votes: {comment.votes}</p>
                     <button onClick={()=> this.handleVoteUp(comment.comment_id)}>🔼</button>
                     <button onClick={()=> this.handleVoteDown(comment.comment_id)}>🔽</button>
-                    <button className="delete-button" onClick={() =>this.deleteCommentHandler(comment.comment_id)}>❌</button>
+
+                    {(user === comment.author ?
+                               <button className="delete-button" onClick={() =>this.deleteCommentHandler(comment.comment_id)}>❌</button> : '')}
+                               
                     <hr></hr>
                 </div>
             )
