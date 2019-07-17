@@ -46,12 +46,16 @@ class Comments extends React.Component {
                     
                     <p className="comment-body">{comment.body}</p>
                     <p>votes: {comment.votes}</p>
-                    <button onClick={()=> this.handleVoteUp(comment.comment_id)}>🔼</button>
-                    <button onClick={()=> this.handleVoteDown(comment.comment_id)}>🔽</button>
 
+                    {(user === "" ? <p>Only logged in users can vote and post comments</p> :
+                    <>
+                        <button onClick={()=> this.handleVoteUp(comment.comment_id)}>🔼</button>
+                        <button onClick={()=> this.handleVoteDown(comment.comment_id)}>🔽</button>
+                    </>
+                    )}
                     {(user === comment.author ?
-                               <button className="delete-button" onClick={() =>this.deleteCommentHandler(comment.comment_id)}>❌</button> : '')}
-                               
+                        <button className="delete-button" onClick={() =>this.deleteCommentHandler(comment.comment_id)}>❌</button> : '')}
+
                     <hr></hr>
                 </div>
             )

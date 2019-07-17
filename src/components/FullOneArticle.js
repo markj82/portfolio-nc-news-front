@@ -29,7 +29,8 @@ class FullOneArticle extends React.Component {
     }
 
     render() {
-        const { oneArticle, isCommentVisible } = this.state
+        const { oneArticle, isCommentVisible } = this.state;
+        const { user } = this.props;
         if (this.state.err) return <ErrorPage details={this.state.err}/>
         let buttonShowHide;
         if(isCommentVisible) {
@@ -37,6 +38,8 @@ class FullOneArticle extends React.Component {
         } else {
             buttonShowHide = <button onClick={this.handleShowComments}>Show all comments</button>
         }
+
+
         return (
            
         oneArticle ? (
@@ -51,9 +54,12 @@ class FullOneArticle extends React.Component {
                 <p>Votes: {oneArticle.votes}</p>
                 <p>Comments: {oneArticle.comment_count}</p>
 
+                {(user === "" ? <p>Only logged in users can vote and post comments</p> :
+                <>
                 <button onClick={this.handleVoteUp}>Thumbs Up 👍</button>
-                
                 <button onClick={this.handleVoteDown}>Thumbs Down 👎</button>
+                </>
+                )}
                 
                 {buttonShowHide}
 
