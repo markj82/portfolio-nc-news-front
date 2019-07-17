@@ -1,12 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import '../styles/Articles.css'
 import { Link } from '@reach/router';
 import { getAllArticles } from '../api'
-
-
-// API 
-// https://nc-mj-news.herokuapp.com/api/articles
+import ErrorPage from './ErrorPage';
+import { datePrettier } from '../utils/datePrettier';
 
 class Articles extends React.Component {
     state = {
@@ -15,7 +12,8 @@ class Articles extends React.Component {
         isAllArticlesHidden: false,
         articles: null,
         sort_by: null,
-        order: null
+        order: null,
+        err: null
     }
 
     paragraphShortener = p => {
@@ -58,6 +56,8 @@ class Articles extends React.Component {
     }
 
     render() {
+        const { err } = this.state;
+        if (err) return <ErrorPage details={err}/>
         let articlesToShow
         if (this.state.articles) {
             articlesToShow = this.state.articles.map(article => {
@@ -65,7 +65,7 @@ class Articles extends React.Component {
                     <div className="single-article" key={article.article_id}>
                         <span className="sub-heading-one-article">
                             <p className="sub-heading-date">Posted by <Link to={`/author/${article.author}`}>{article.author}</Link> on </p>
-                            <p className="sub-heading-date">{article.created_at}</p></span>
+                            <p className="sub-heading-date">{datePrettier(article.created_at)}</p></span>
 
                         <span className="sub-heading-topic">
                         <Link to={`/topic/${article.topic}`}> #{article.topic}</Link>
@@ -102,13 +102,14 @@ class Articles extends React.Component {
     fetchArticles = () => {
         getAllArticles(this.props, this.state.sort_by, this.state.order)
         .then(res => {
-            console.log(res, '<<< res from component did mount')
+            // console.log(res, '<<< res from component did mount')
             this.setState({
                 articles: res.articles
             })
         })
         .catch(err => {
-            console.log(err, '<< error')
+            console.log(err, '<< error from articles')
+            this.setState({err})
         })
     }
 

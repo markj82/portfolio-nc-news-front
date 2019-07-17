@@ -3,6 +3,8 @@ import { getArticleById, voteForArticle } from '../api';
 import '../styles/FullOneArticle.css'
 import { Link } from '@reach/router';
 import Comments from './Comments';
+import ErrorPage from './ErrorPage';
+import { datePrettier } from '../utils/datePrettier';
 
 class FullOneArticle extends React.Component {
 
@@ -30,13 +32,13 @@ class FullOneArticle extends React.Component {
 
     render() {
         const { oneArticle } = this.state
-        // if (this.state.err) return <h3>Something went wrong</h3>
+        if (this.state.err) return <ErrorPage details={this.state.err}/>
         return (
            
         oneArticle ? (
            
             <div className="full-one-article">
-                <span className="sub-heading-one-article"><p className="sub-heading-date">Posted by <Link to={`/author/${oneArticle.author}`}>{oneArticle.author}</Link> on </p><p className="sub-heading-date">{oneArticle.created_at}</p></span>
+                <span className="sub-heading-one-article"><p className="sub-heading-date">Posted by <Link to={`/author/${oneArticle.author}`}>{oneArticle.author}</Link> on </p><p className="sub-heading-date">{datePrettier(oneArticle.created_at)}</p></span>
                 <h2>{oneArticle.title}</h2>
                 <p>{oneArticle.body}</p>
 
@@ -66,6 +68,7 @@ class FullOneArticle extends React.Component {
             })
             // lecture
             .catch(err => {
+                console.log({err})
                 this.setState({err})
             })
     }

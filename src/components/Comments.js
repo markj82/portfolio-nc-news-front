@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCommentsByArticleId, deleteComment } from '../api'
+import { getCommentsByArticleId, deleteComment, voteForComment } from '../api'
 import CommentAdder from './CommentAdder';
 import '../styles/Comments.css'
 
@@ -26,19 +26,27 @@ class Comments extends React.Component {
         }
 
     deleteCommentHandler = commentId => {
-        console.log(commentId, '<<< e from delete comment handler')
+
         deleteComment(commentId)
+    }
+
+    handleVoteUp = id => {
+        voteForComment(id, { inc_votes : 1 })
+    }
+
+    handleVoteDown = id => {
+        voteForComment(id, { inc_votes : -1 })
     }
 
     render() { 
         const commentsToShow = this.state.comments.map(comment => {
             return (
-                <div>
+                <div key={comment.comment_id}>
                     
                     <p className="comment-body">{comment.body}</p>
                     <p>votes: {comment.votes}</p>
-                    <button>🔼</button>
-                    <button>🔽</button>
+                    <button onClick={()=> this.handleVoteUp(comment.comment_id)}>🔼</button>
+                    <button onClick={()=> this.handleVoteDown(comment.comment_id)}>🔽</button>
                     <button className="delete-button" onClick={() =>this.deleteCommentHandler(comment.comment_id)}>❌</button>
                     <hr></hr>
                 </div>

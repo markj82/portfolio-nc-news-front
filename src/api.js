@@ -3,7 +3,6 @@ import axios from 'axios';
 const BASE_URL = 'https://nc-mj-news.herokuapp.com'
 
 export const getAllArticles = async ({topic, author}, sort_by, order) => {
-
     const { data } = await axios.get(`${BASE_URL}/api/articles`, {
         params:{
             topic,
@@ -32,7 +31,7 @@ export const postComment = async (id, newComment) => {
 
 export const deleteComment = async comment_id => {
     await axios.delete(`${BASE_URL}/api/comments/${comment_id}`)
-    console.log(comment_id, 'comment deleted')
+    // console.log(comment_id, 'comment deleted')
 }
 
 export const voteForArticle = async (article_id, newVote) => {
@@ -40,3 +39,9 @@ export const voteForArticle = async (article_id, newVote) => {
     return data
 }
 
+export const voteForComment = async (comment_id, newVote) => {
+    // console.log('comment_id:', comment_id)
+    // console.log('newVote:', newVote)
+    const { data } = await axios.patch(`${BASE_URL}/api/comments/${comment_id}`, newVote);
+    return data
+}
