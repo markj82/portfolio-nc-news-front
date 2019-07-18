@@ -4,9 +4,10 @@ import { Link } from '@reach/router';
 import logo2 from '../img/logo2.png'
 
 const ControlPanel = (props) => {
+    // console.log(props, 'props from control panel')
     return (
         <div className="control-panel-main">
-            <Link to="/" className="item link"><img className="logo" src={logo2}/></Link>
+            <Link to="/" className="item link">   <img className="logo" src={logo2}/>   </Link>
             <div className="topics-control-panel item">
             <div className="dropdown item link">
                 <button className="dropbtn">View By Topics</button>
@@ -24,7 +25,7 @@ const ControlPanel = (props) => {
                 Login / Sign Up
             </div>
             <div className="logged-in item">
-                Logged in as {props.user}
+                Logged in as {props.user.username}
             </div>
         </div>
     );

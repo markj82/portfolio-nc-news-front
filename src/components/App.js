@@ -10,7 +10,21 @@ import NotFound from './NotFound'
 class App extends React.Component {
 
   state = {
-    loggedInUser: 'jessjelly'
+    loggedInUser: {
+      username: "happyamy2016",
+      avatar_url: "https://www.spiritsurfers.net/monastery/wp-content/uploads/_41500270_mrtickle.jpg",
+      name: "Tom Tickle"
+      }
+    
+  }
+
+  users: {
+    username: "",
+    username: "grumpy19",
+    username: "jessjelly",
+    username: "tickle122",
+    username: "weegembump",
+    username: "happyamy2016",
   }
 
   handleLogInLogOut = () => {

@@ -35,6 +35,8 @@ export const deleteComment = async comment_id => {
 }
 
 export const voteForArticle = async (article_id, newVote) => {
+    console.log('article_id:', article_id)
+    console.log('newVote:', newVote)
     const { data } = await axios.patch(`${BASE_URL}/api/articles/${article_id}`, newVote);
     return data
 }

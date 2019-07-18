@@ -22,15 +22,22 @@ class FullOneArticle extends React.Component {
 
     handleVoteUp = () => {
         voteForArticle(this.props.id, {inc_votes: 1})
+        this.setState(prevState => ({
+            oneArticle: {...prevState.oneArticle, votes: prevState.oneArticle.votes+1}
+        }))
     }
 
     handleVoteDown = () => {
         voteForArticle(this.props.id, {inc_votes: -1})
+        this.setState(prevState => ({
+            oneArticle: {...prevState.oneArticle, votes: prevState.oneArticle.votes-1}
+        }))
     }
 
     render() {
         const { oneArticle, isCommentVisible } = this.state;
-        const { user } = this.props;
+        const { user } = this.props; // user.username for username
+        console.log('what is happening??')
         if (this.state.err) return <ErrorPage details={this.state.err}/>
         let buttonShowHide;
         if(isCommentVisible) {
@@ -54,7 +61,7 @@ class FullOneArticle extends React.Component {
                 <p>Votes: {oneArticle.votes}</p>
                 <p>Comments: {oneArticle.comment_count}</p>
 
-                {(user === "" ? <p>Only logged in users can vote and post comments</p> :
+                {(user.username === "" ? <p>Only logged in users can vote and post comments</p> :
                 <>
                 <button onClick={this.handleVoteUp}>Thumbs Up 👍</button>
                 <button onClick={this.handleVoteDown}>Thumbs Down 👎</button>
@@ -63,7 +70,7 @@ class FullOneArticle extends React.Component {
                 
                 {buttonShowHide}
 
-                {this.state.isCommentVisible && <Comments user={this.props.user} id={this.props.id}/>}
+                {this.state.isCommentVisible && <Comments user={user} id={this.props.id}/>}
             </div>
          ) : null
         )
@@ -89,7 +96,8 @@ class FullOneArticle extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.oneArticle !== this.state.oneArticle) {
+        if (prevProps.id !== this.props.id) {
+            console.log('article changed')
             this.fetchArticleById()
         }
     }
