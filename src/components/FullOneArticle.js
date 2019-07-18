@@ -37,7 +37,7 @@ class FullOneArticle extends React.Component {
     render() {
         const { oneArticle, isCommentVisible } = this.state;
         const { user } = this.props; // user.username for username
-        console.log('what is happening??')
+        
         if (this.state.err) return <ErrorPage details={this.state.err}/>
         let buttonShowHide;
         if(isCommentVisible) {

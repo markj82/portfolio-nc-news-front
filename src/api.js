@@ -26,6 +26,7 @@ export const getCommentsByArticleId = async (id) => {
 
 export const postComment = async (id, newComment) => {
     const { data } = await axios.post(`${BASE_URL}/api/articles/${id}/comments`, newComment);
+    console.log(newComment, '<<<< data from post comment')
     return data.comment;
 }
 

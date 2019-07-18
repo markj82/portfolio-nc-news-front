@@ -17,8 +17,11 @@ class CommentAdder extends React.Component {
         e.preventDefault();
         const { body } = this.state;
         const { user, id } = this.props;
+        console.log('comment body:', body)
+        console.log('comment id:', id)
+        console.log('user id:', user)
         if (body === "") return alert('This field cannot be empty!')
-        postComment(id, {body, username: user})
+        postComment(id, {body, username: user.username})
             .then(res => {
                 console.log(res, '<<< comment from comment adder')
             })

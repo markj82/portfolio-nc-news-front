@@ -25,6 +25,7 @@ const ControlPanel = (props) => {
             <div className="logged-in item">
                 Logged in as {props.user.username}
             </div>
+            
         </div>
     );
 }

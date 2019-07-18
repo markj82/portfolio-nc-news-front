@@ -11,7 +11,7 @@ class App extends React.Component {
 
   state = {
     loggedInUser: {
-      username: "happyamy2016",
+      username: "jessjelly",
       avatar_url: "https://www.spiritsurfers.net/monastery/wp-content/uploads/_41500270_mrtickle.jpg",
       name: "Tom Tickle"
       }
