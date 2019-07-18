@@ -18,9 +18,7 @@ const ControlPanel = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="topics-control-panel item">
-                
-            </div>
+           
             <div className="login-user item">
                 Login / Sign Up
             </div>
