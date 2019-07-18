@@ -9,7 +9,15 @@
 
 .select-to-sort {
     justify-self: start;
-    grid-column: 1 / 4
+    grid-column: 1 / 4;
+    font-size: 1.2em;
+    padding: 10px 8px 10px 14px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    position: relative;
+    outline: none;
+    z-index: -1;
 }
 
 .single-article {

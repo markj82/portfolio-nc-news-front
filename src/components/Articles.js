@@ -85,7 +85,7 @@ class Articles extends React.Component {
         return (
             <div className="articles-container">
                 <select className="select-to-sort" onChange={this.orderAndSortByHandler}>
-                    <option disabled selected value> -- Sort -- </option>
+                    <option disabled selected value> Sort By.. </option>
                     <option value="created_at_desc">Created Date - Newest First</option>
                     <option value="created_at_asc">Created Date - Oldest First</option>
                     <option value="comment_count_desc">Comment Count - Descending</option>
