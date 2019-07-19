@@ -11,7 +11,8 @@ class FullOneArticle extends React.Component {
     state = {
         oneArticle: null,
         isCommentVisible: false,
-        err: null
+        err: null,
+        votesCount: 0
     }
 
     handleShowComments = () => {
@@ -20,11 +21,14 @@ class FullOneArticle extends React.Component {
         }))
     }
 
+
     handleVoteUp = () => {
-        voteForArticle(this.props.id, {inc_votes: 1})
-        this.setState(prevState => ({
-            oneArticle: {...prevState.oneArticle, votes: prevState.oneArticle.votes+1}
-        }))
+            console.log('up')
+            voteForArticle(this.props.id, {inc_votes: 1})
+            this.setState(prevState => ({
+                oneArticle: {...prevState.oneArticle, votes: prevState.oneArticle.votes+1},
+                votesCount: prevState.votesCount + 1
+            }))
     }
 
     handleVoteDown = () => {
@@ -41,9 +45,9 @@ class FullOneArticle extends React.Component {
         if (this.state.err) return <ErrorPage details={this.state.err}/>
         let buttonShowHide;
         if(isCommentVisible) {
-            buttonShowHide = <button onClick={this.handleShowComments}>Hide all comments</button>
+            buttonShowHide = <button className="button-show-hide-comments" onClick={this.handleShowComments}>Hide all comments</button>
         } else {
-            buttonShowHide = <button onClick={this.handleShowComments}>Show all comments</button>
+            buttonShowHide = <button className="button-show-hide-comments" onClick={this.handleShowComments}>Show all comments</button>
         }
 
 
@@ -63,8 +67,8 @@ class FullOneArticle extends React.Component {
 
                 {(user.username === "" ? <p>Only logged in users can vote and post comments</p> :
                 <>
-                <button onClick={this.handleVoteUp}>Thumbs Up 👍</button>
-                <button onClick={this.handleVoteDown}>Thumbs Down 👎</button>
+                <button className="button-voteup-article" onClick={this.handleVoteUp}>Thumbs Up 👍</button>
+                <button className="button-votedown-article" onClick={this.handleVoteDown}>Thumbs Down 👎</button>
                 </>
                 )}
                 

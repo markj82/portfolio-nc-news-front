@@ -1,5 +1,6 @@
 import React from 'react';
 import { postComment } from '../api';
+import '../styles/CommentAdder.css'
 
 class CommentAdder extends React.Component {
     state = { 
@@ -32,9 +33,9 @@ class CommentAdder extends React.Component {
         return ( 
             <form onSubmit={this.handleSubmit} className="add-form-comment">
                 <label htmlFor="body">
-                    Comment:
-                    <input type="text" name="body" id="body" value={body} onChange={this.handleChange}/>
-                    <button>Add a comment</button>
+                    Share your thoughts:
+                    <textarea className="text-area-comment" type="text" name="body" id="body" value={body} onChange={this.handleChange}/>
+                    <button className="add-comment-button">Add a comment</button>
                 </label>
             </form>
          );

@@ -18,14 +18,14 @@ class App extends React.Component {
     
   }
 
-  users: {
-    username: "",
-    username: "grumpy19",
-    username: "jessjelly",
-    username: "tickle122",
-    username: "weegembump",
-    username: "happyamy2016",
-  }
+  // users: {
+  //   username: "",
+  //   username: "grumpy19",
+  //   username: "jessjelly",
+  //   username: "tickle122",
+  //   username: "weegembump",
+  //   username: "happyamy2016"
+  // }
 
   handleLogInLogOut = () => {
 
