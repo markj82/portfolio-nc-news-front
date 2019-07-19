@@ -1,8 +1,11 @@
 import React from 'react';
+import '../styles/ErrorPage.css';
 
 const NotFound = () => {
-    return ( 
-        <h3>Sorry friend, nothing here...</h3>
+    return (
+        <div className="main-error">
+            <h3>Sorry friend, nothing here...</h3>
+        </div>
      );
 }
  

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/ErrorPage.css';
 
 const ErrorPage = (props) => {
     
@@ -12,7 +13,7 @@ const ErrorPage = (props) => {
 
     return (
         <div className="main-error">
-            <h5>Something went wrong</h5>
+            <h4>Something went wrong</h4>
             <p>{message}</p>
         </div>
      );
