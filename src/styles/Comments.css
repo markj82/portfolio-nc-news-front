@@ -13,3 +13,15 @@
 .comments-section {
     padding-top: 30px;
 }
+
+.one-comment {
+    background: rgb(239, 252, 246);
+    padding: 0.5em;
+    border: 1px solid rgb(196, 176, 176);
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.posted-by-comment-author {
+    font-size: 0.8em;
+}

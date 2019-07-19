@@ -2,22 +2,30 @@ import React from 'react';
 import { getCommentsByArticleId, deleteComment, voteForComment } from '../api'
 import CommentAdder from './CommentAdder';
 import '../styles/Comments.css'
+import { log } from 'util';
 
 class Comments extends React.Component {
     state = {
-        comments: null
+        comments: []
     }
 
     deleteCommentHandler = commentId => {
-
+        console.log('delete')
         deleteComment(commentId)
+        this.setState(prevState => ({
+            comments: prevState.comments.filter(comm => {
+                return comm.comment_id !== commentId
+            })
+        }))
     }
 
     handleVoteUp = id => {
+        console.log('up')
         voteForComment(id, { inc_votes : 1 })
     }
 
     handleVoteDown = id => {
+        console.log('down')
         voteForComment(id, { inc_votes : -1 })
     }
 
@@ -28,8 +36,9 @@ class Comments extends React.Component {
         if (this.state.comments) {
             commentsToShow = this.state.comments.map(comment => {
                 return (
-                    <div key={comment.comment_id}>
-                        
+                    <div className="one-comment" key={comment.comment_id}>
+                        <p className="posted-by-comment-author">Posted by {comment.author}</p> on
+                        <p>{comment.created_at}</p>
                         <p className="comment-body">{comment.body}</p>
                         <p>votes: {comment.votes}</p>
     
@@ -42,7 +51,7 @@ class Comments extends React.Component {
                         {(user.username === comment.author ?
                             <button className="delete-button" onClick={() =>this.deleteCommentHandler(comment.comment_id)}>❌</button> : '')}
     
-                        <hr></hr>
+                        
                     </div>
                 )
             })
@@ -50,10 +59,16 @@ class Comments extends React.Component {
 
         return (
             <div className="comments-section">
-                <CommentAdder user={this.props.user} id={this.props.id}/>
+                <CommentAdder user={this.props.user} id={this.props.id} addComment={this.addNewComment}/>
                 {commentsToShow ? commentsToShow : <h4>Loading content...</h4>}
             </div>
          );
+    }
+
+    addNewComment = (newComment) => {
+        this.setState(prevState => ({
+            comments: [newComment, ...prevState.comments]
+        }))
     }
 
     fetchComments = () => {
@@ -70,7 +85,9 @@ class Comments extends React.Component {
     }
 
     componentDidUpdate (prevProps, prevState) {
-        if (prevState.comments !== this.state.comments) {
+        console.log('forever?')
+        console.log(prevState, 'prevestate')
+        if (prevState.comments.comment_id !== this.state.comments.comment_id) {
             this.fetchComments()
         }
     }

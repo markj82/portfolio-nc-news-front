@@ -18,10 +18,6 @@ const ControlPanel = (props) => {
                     </div>
                 </div>
             </div>
-           
-            <div className="login-user item">
-                Login / Sign Up
-            </div>
             <div className="logged-in item">
                 Logged in as {props.user.username}
             </div>

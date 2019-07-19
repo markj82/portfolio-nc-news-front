@@ -23,7 +23,6 @@ class FullOneArticle extends React.Component {
 
 
     handleVoteUp = () => {
-            console.log('up')
             voteForArticle(this.props.id, {inc_votes: 1})
             this.setState(prevState => ({
                 oneArticle: {...prevState.oneArticle, votes: prevState.oneArticle.votes+1},
@@ -32,10 +31,10 @@ class FullOneArticle extends React.Component {
     }
 
     handleVoteDown = () => {
-        voteForArticle(this.props.id, {inc_votes: -1})
-        this.setState(prevState => ({
-            oneArticle: {...prevState.oneArticle, votes: prevState.oneArticle.votes-1}
-        }))
+            voteForArticle(this.props.id, {inc_votes: -1})
+            this.setState(prevState => ({
+                oneArticle: {...prevState.oneArticle, votes: prevState.oneArticle.votes-1}
+            }))
     }
 
     render() {

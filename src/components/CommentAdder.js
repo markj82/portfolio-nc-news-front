@@ -22,6 +22,7 @@ class CommentAdder extends React.Component {
         postComment(id, {body, username: user.username})
             .then(res => {
                 console.log(res, '<<< comment from comment adder')
+                this.props.addComment(res)
             })
         this.setState({
             body: ''

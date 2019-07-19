@@ -102,13 +102,11 @@ class Articles extends React.Component {
     fetchArticles = () => {
         getAllArticles(this.props, this.state.sort_by, this.state.order)
         .then(res => {
-            // console.log(res, '<<< res from component did mount')
             this.setState({
                 articles: res.articles
             })
         })
         .catch(err => {
-            console.log(err, '<< error from articles')
             this.setState({err})
         })
     }
