@@ -3,21 +3,16 @@ import '../styles/Articles.css'
 import { Link } from '@reach/router';
 import { getAllArticles } from '../api'
 import ErrorPage from './ErrorPage';
-import { datePrettier } from '../utils/datePrettier';
+import { datePrettier, paragraphShortener } from '../utils/utils';
 
 class Articles extends React.Component {
     state = {
         clickedArticleId: null,
-        isLoading: true,
         isAllArticlesHidden: false,
         articles: null,
         sort_by: null,
         order: null,
         err: null
-    }
-
-    paragraphShortener = p => {
-        if (p.length > 100) return p.substring(0, 100)
     }
 
     orderAndSortByHandler = e => {
@@ -73,7 +68,7 @@ class Articles extends React.Component {
                         <Link
                             className="article-title" to={`/articles/${article.article_id}`}><h3>{article.title}</h3>
                         </Link>
-                            <p className="paragraph">{this.paragraphShortener(article.body)} <em><strong>
+                            <p className="paragraph">{paragraphShortener(article.body)} <em><strong>
                         <Link
                             className="read-more" to={`/articles/${article.article_id}`}>...read more
                         </Link></strong></em></p>
@@ -103,7 +98,8 @@ class Articles extends React.Component {
         getAllArticles(this.props, this.state.sort_by, this.state.order)
         .then(res => {
             this.setState({
-                articles: res.articles
+                articles: res.articles,
+                err: null
             })
         })
         .catch(err => {

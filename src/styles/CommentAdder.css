@@ -37,6 +37,11 @@
     background: rgb(243, 218, 134);
 }
 
+.empty-field {
+    display: inline;
+    margin-left: 2em;
+}
+
 /* MOBILE */
 @media (max-width: 600px) {
 /* main frame */

@@ -4,13 +4,18 @@ import '../styles/CommentAdder.css'
 
 class CommentAdder extends React.Component {
     state = { 
-        body: ''
+        body: '',
+        emptyField: 'This field cannot be empty!',
+        showField: false,
+        isEnabled: false
     }
 
     handleChange = e => {
         const { value } = e.target;
         this.setState({
-            body: value
+            body: value,
+            showField: false,
+            isDisabled: false
         })
     }
 
@@ -18,7 +23,15 @@ class CommentAdder extends React.Component {
         e.preventDefault();
         const { body } = this.state;
         const { user, id } = this.props;
-        if (body === "") return alert('This field cannot be empty!')
+
+        if (body === "") {
+            this.setState({
+                showField: true,
+                isDisabled: true
+            })
+            return;
+        }
+       
         postComment(id, {body, username: user.username})
             .then(res => {
                 console.log(res, '<<< comment from comment adder')
@@ -35,8 +48,9 @@ class CommentAdder extends React.Component {
             <form onSubmit={this.handleSubmit} className="add-form-comment">
                 <label htmlFor="body">
                     Share your thoughts:
-                    <textarea className="text-area-comment" type="text" name="body" id="body" value={body} onChange={this.handleChange}/>
-                    <button className="add-comment-button">Add a comment</button>
+                    <textarea className="text-area-comment" type="text" name="body" id="body" placeholder="Post your comment here.." value={body} onChange={this.handleChange}/>
+                    <button disabled={this.state.isDisabled} className="add-comment-button">Add a comment</button>
+                    {this.state.showField && <h4 className="empty-field">{this.state.emptyField}</h4>}
                 </label>
             </form>
          );

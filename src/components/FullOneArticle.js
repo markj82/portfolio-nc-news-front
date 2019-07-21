@@ -4,7 +4,7 @@ import '../styles/FullOneArticle.css'
 import { Link } from '@reach/router';
 import Comments from './Comments';
 import ErrorPage from './ErrorPage';
-import { datePrettier } from '../utils/datePrettier';
+import { datePrettier } from '../utils/utils';
 
 class FullOneArticle extends React.Component {
 
@@ -12,7 +12,9 @@ class FullOneArticle extends React.Component {
         oneArticle: null,
         isCommentVisible: false,
         err: null,
-        votesCount: 0
+        votesCount: 0,
+        isButtonUpDisabled: false,
+        isButtonDownDisabled: false
     }
 
     handleShowComments = () => {
@@ -23,22 +25,37 @@ class FullOneArticle extends React.Component {
 
 
     handleVoteUp = () => {
+            const {votesCount} = this.state;
             voteForArticle(this.props.id, {inc_votes: 1})
             this.setState(prevState => ({
                 oneArticle: {...prevState.oneArticle, votes: prevState.oneArticle.votes+1},
                 votesCount: prevState.votesCount + 1
             }))
+            if (votesCount > 0) {
+                this.setState({
+                    isButtonUpDisabled: true,
+                    isButtonDownDisabled: false
+                })
+            }
     }
 
     handleVoteDown = () => {
+            const {votesCount} = this.state;
             voteForArticle(this.props.id, {inc_votes: -1})
             this.setState(prevState => ({
-                oneArticle: {...prevState.oneArticle, votes: prevState.oneArticle.votes-1}
+                oneArticle: {...prevState.oneArticle, votes: prevState.oneArticle.votes-1},
+                votesCount: prevState.votesCount - 1
             }))
+            if (votesCount < 0) {
+                this.setState({
+                    isButtonDownDisabled: true,
+                    isButtonUpDisabled: false
+                })
+            }
     }
 
     render() {
-        const { oneArticle, isCommentVisible } = this.state;
+        const { oneArticle, isCommentVisible, isButtonDownDisabled, isButtonUpDisabled } = this.state;
         const { user } = this.props; // user.username for username
         
         if (this.state.err) return <ErrorPage details={this.state.err}/>
@@ -66,8 +83,8 @@ class FullOneArticle extends React.Component {
 
                 {(user.username === "" ? <p>Only logged in users can vote and post comments</p> :
                 <>
-                <button className="button-voteup-article" onClick={this.handleVoteUp}>Thumbs Up 👍</button>
-                <button className="button-votedown-article" onClick={this.handleVoteDown}>Thumbs Down 👎</button>
+                <button disabled={isButtonUpDisabled} className="button-voteup-article" onClick={this.handleVoteUp}>Thumbs Up 👍</button>
+                <button disabled={isButtonDownDisabled} className="button-votedown-article" onClick={this.handleVoteDown}>Thumbs Down 👎</button>
                 </>
                 )}
                 

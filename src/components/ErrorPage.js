@@ -2,8 +2,9 @@ import React from 'react';
 import '../styles/ErrorPage.css';
 
 const ErrorPage = (props) => {
-    
+
     const { status } = props.details.response;
+    
     let message = ''
         if (status === 400) {
             message = '400: bad request'
