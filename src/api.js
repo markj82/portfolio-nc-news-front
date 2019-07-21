@@ -32,21 +32,14 @@ export const postComment = async (id, newComment) => {
 export const deleteComment = async comment_id => {
     const {data} = await axios.delete(`${BASE_URL}/api/comments/${comment_id}`)
     return data;
-    console.log('delete api.js')
-    // console.log(comment_id, 'comment deleted')
 }
 
 export const voteForArticle = async (article_id, newVote) => {
-    // console.log('article_id:', article_id)
-    // console.log('newVote:', newVote)
     const { data } = await axios.patch(`${BASE_URL}/api/articles/${article_id}`, newVote);
     return data
 }
 
 export const voteForComment = async (comment_id, newVote) => {
-    // console.log('comment_id:', comment_id)
-    // console.log('newVote:', newVote)
     const { data } = await axios.patch(`${BASE_URL}/api/comments/${comment_id}`, newVote);
-    console.log('vote comment api.js')
     return data
 }
