@@ -4,7 +4,6 @@ import { Link } from '@reach/router';
 import logo2 from '../img/logo2.png'
 
 const ControlPanel = (props) => {
-    // console.log(props, 'props from control panel')
     return (
         <div className="control-panel-main">
             <Link to="/" className="item link">   <img className="logo" src={logo2}/>   </Link>

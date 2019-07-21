@@ -111,9 +111,7 @@ class Articles extends React.Component {
         this.fetchArticles()
     }
 
-    // preventing infinite loop...
     componentDidUpdate (prevProps, prevState) {
-        // make a new request when url changes,
         if (prevProps.topic !== this.props.topic || prevProps.author !== this.props.author) {
             this.fetchArticles();
         } else if(prevState.sort_by !== this.state.sort_by || prevState.order !== this.state.order) {

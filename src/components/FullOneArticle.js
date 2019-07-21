@@ -56,7 +56,7 @@ class FullOneArticle extends React.Component {
 
     render() {
         const { oneArticle, isCommentVisible, isButtonDownDisabled, isButtonUpDisabled } = this.state;
-        const { user } = this.props; // user.username for username
+        const { user } = this.props;
         
         if (this.state.err) return <ErrorPage details={this.state.err}/>
         let buttonShowHide;
@@ -104,9 +104,7 @@ class FullOneArticle extends React.Component {
                     oneArticle: res.article
                 })
             })
-            // lecture
             .catch(err => {
-                console.log({err})
                 this.setState({err})
             })
     }
@@ -117,7 +115,6 @@ class FullOneArticle extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.id !== this.props.id) {
-            console.log('article changed')
             this.fetchArticleById()
         }
     }

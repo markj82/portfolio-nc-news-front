@@ -27,7 +27,6 @@ class Comments extends React.Component {
         this.setState(prevState => ({
             votesCount: prevState.votesCount + arrow,
             comments: prevState.comments.map(comm => {
-                console.log(comm, 'comm <<<')
                 if (comm.comment_id === id) {
                     return {...comm, votes: comm.votes + arrow}
                 } else return comm
@@ -101,8 +100,6 @@ class Comments extends React.Component {
     }
 
     componentDidUpdate (prevProps, prevState) {
-        console.log('forever?')
-        console.log(prevState, 'prevestate') // prevstate, array of objects
         if (prevState.comments.comment_id !== this.state.comments.comment_id) {
             this.fetchComments()
         }
