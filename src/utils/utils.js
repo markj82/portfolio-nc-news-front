@@ -1,6 +1,9 @@
+const fnsDate = require('date-fns/distance_in_words_to_now');
+
+
 exports.datePrettier = date => {
     const time = new Date(date)
-    return time.toLocaleString()
+    return `${fnsDate(time)} ago`
 }
 
 exports.paragraphShortener = p => {
