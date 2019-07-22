@@ -23,33 +23,22 @@ class FullOneArticle extends React.Component {
         }))
     }
 
-
-    handleVoteUp = () => {
-            const {votesCount} = this.state;
-            voteForArticle(this.props.id, {inc_votes: 1})
+    handleVote = arrow => {
+        const {votesCount} = this.state;
+            voteForArticle(this.props.id, {inc_votes: arrow})
             this.setState(prevState => ({
-                oneArticle: {...prevState.oneArticle, votes: prevState.oneArticle.votes+1},
-                votesCount: prevState.votesCount + 1
-            }))
-            if (votesCount > 0) {
-                this.setState({
-                    isButtonUpDisabled: true,
-                    isButtonDownDisabled: false
-                })
-            }
-    }
-
-    handleVoteDown = () => {
-            const {votesCount} = this.state;
-            voteForArticle(this.props.id, {inc_votes: -1})
-            this.setState(prevState => ({
-                oneArticle: {...prevState.oneArticle, votes: prevState.oneArticle.votes-1},
-                votesCount: prevState.votesCount - 1
+                oneArticle: {...prevState.oneArticle, votes: prevState.oneArticle.votes + arrow},
+                votesCount: prevState.votesCount + arrow
             }))
             if (votesCount < 0) {
                 this.setState({
                     isButtonDownDisabled: true,
                     isButtonUpDisabled: false
+                })
+            } else {
+                this.setState({
+                    isButtonDownDisabled: false,
+                    isButtonUpDisabled: true
                 })
             }
     }
@@ -83,8 +72,8 @@ class FullOneArticle extends React.Component {
 
                 {(user.username === "" ? <p>Only logged in users can vote and post comments</p> :
                 <>
-                <button disabled={isButtonUpDisabled} className="button-voteup-article" onClick={this.handleVoteUp}>Thumbs Up <span role="img" aria-label="thumbup">👍</span></button>
-                <button disabled={isButtonDownDisabled} className="button-votedown-article" onClick={this.handleVoteDown}>Thumbs Down <span role="img" aria-label="thumbdown">👎</span></button>
+                <button disabled={isButtonUpDisabled} className="button-voteup-article" onClick={()=>this.handleVote(1)}>Thumbs Up <span role="img" aria-label="thumbup">👍</span></button>
+                <button disabled={isButtonDownDisabled} className="button-votedown-article" onClick={()=>this.handleVote(-1)}>Thumbs Down <span role="img" aria-label="thumbdown">👎</span></button>
                 </>
                 )}
                 
