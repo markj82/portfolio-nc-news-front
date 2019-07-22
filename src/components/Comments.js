@@ -4,6 +4,8 @@ import CommentAdder from './CommentAdder';
 import '../styles/Comments.css'
 import { datePrettier } from '../utils/utils'
 
+import CommentCard from './CommentCard';
+
 class Comments extends React.Component {
     state = {
         comments: [],
@@ -12,7 +14,7 @@ class Comments extends React.Component {
         isButtonDownDisabled: false
     }
 
-    deleteCommentHandler = commentId => {
+    deleteSingleCommentHandler = commentId => {
         deleteComment(commentId)
         this.setState(prevState => ({
             comments: prevState.comments.filter(comm => {
@@ -47,26 +49,12 @@ class Comments extends React.Component {
    
     render() { 
         const { user } = this.props;
-        const {isButtonDownDisabled, isButtonUpDisabled} = this.state
         let commentsToShow
         if (this.state.comments) {
             commentsToShow = this.state.comments.map(comment => {
                 return (
                     <div className="one-comment" key={comment.comment_id}>
-                        <span className="sub-heading-single-comment"><p className="posted-by-comment-author">Posted by {comment.author}</p> on <p className="posted-on-comment-date">{datePrettier(comment.created_at)}</p></span>
-                        <p className="comment-body">{comment.body}</p>
-                        <p>votes: {comment.votes}</p>
-    
-                        {(user === "" ? <p>Only logged in users can vote and post comments</p> :
-                        <>
-                            <button disabled={isButtonUpDisabled} className="comment-vote-button" onClick={()=> this.handleVote(comment.comment_id, 1)}>👍</button>
-                            <button disabled={isButtonDownDisabled} className="comment-vote-button" onClick={()=> this.handleVote(comment.comment_id, -1)}>👎</button>
-                        </>
-                        )}
-                        {(user.username === comment.author ?
-                            <button className="delete-button" onClick={() =>this.deleteCommentHandler(comment.comment_id)}>❌</button> : '')}
-    
-                        
+                        <CommentCard singleComment={comment} user={user} deleteSingleComment={this.deleteSingleCommentHandler}/>
                     </div>
                 )
             })
