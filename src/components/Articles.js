@@ -59,8 +59,7 @@ class Articles extends React.Component {
                 return (
                     <div className="single-article" key={article.article_id}>
                         <span className="sub-heading-one-article">
-                            <p className="sub-heading-date">Posted by <Link to={`/author/${article.author}`}>{article.author}</Link></p>
-                            <p className="sub-heading-date">{datePrettier(article.created_at)}</p></span>
+                            <p className="sub-heading-date">Posted by <Link to={`/author/${article.author}`}>{article.author}</Link></p> <p className="sub-heading-date">{datePrettier(article.created_at)}</p></span>
 
                         <span className="sub-heading-topic">
                         <Link to={`/topic/${article.topic}`}> #{article.topic}</Link>

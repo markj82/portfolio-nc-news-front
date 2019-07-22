@@ -72,7 +72,7 @@ class FullOneArticle extends React.Component {
         oneArticle ? (
            
             <div className="full-one-article">
-                <span className="sub-heading-one-article"><p className="sub-heading-date">Posted by <Link to={`/author/${oneArticle.author}`}>{oneArticle.author}</Link> on </p><p className="sub-heading-date">{datePrettier(oneArticle.created_at)}</p></span>
+                <span className="sub-heading-one-article"><p className="sub-heading-date">Posted by <Link to={`/author/${oneArticle.author}`}>{oneArticle.author}</Link> </p><p className="sub-heading-date">{datePrettier(oneArticle.created_at)}</p></span>
                 <h2>{oneArticle.title}</h2>
                 <p>{oneArticle.body}</p>
 

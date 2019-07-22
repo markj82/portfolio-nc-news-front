@@ -41,7 +41,7 @@ class CommentCard extends React.Component {
         const { user } = this.props
         return ( 
             <div>
-                 <span className="sub-heading-single-comment"><p className="posted-by-comment-author">Posted by {comment.author}</p><p className="posted-on-comment-date">{datePrettier(comment.created_at)}</p></span>
+                 <span className="sub-heading-single-comment"><p className="posted-by-comment-author">Posted by {comment.author}</p> <p className="posted-on-comment-date">{datePrettier(comment.created_at)}</p></span>
                         <p className="comment-body">{comment.body}</p>
                         <p>votes: {comment.votes}</p>
     
