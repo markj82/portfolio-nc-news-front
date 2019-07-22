@@ -2,7 +2,6 @@ import React from 'react';
 import { getCommentsByArticleId, deleteComment, voteForComment } from '../api'
 import CommentAdder from './CommentAdder';
 import '../styles/Comments.css'
-import { datePrettier } from '../utils/utils'
 
 import CommentCard from './CommentCard';
 

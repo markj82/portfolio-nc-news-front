@@ -47,12 +47,12 @@ class CommentCard extends React.Component {
     
                         {(user === "" ? <p>Only logged in users can vote and post comments</p> :
                         <>
-                            <button disabled={isButtonUpDisabled} className="comment-vote-button" onClick={()=> this.handleVote(comment.comment_id, 1)}>👍</button>
-                            <button disabled={isButtonDownDisabled} className="comment-vote-button" onClick={()=> this.handleVote(comment.comment_id, -1)}>👎</button>
+                            <button disabled={isButtonUpDisabled} className="comment-vote-button" onClick={()=> this.handleVote(comment.comment_id, 1)}><span role="img" aria-label="thumbup">👍</span></button>
+                            <button disabled={isButtonDownDisabled} className="comment-vote-button" onClick={()=> this.handleVote(comment.comment_id, -1)}><span role="img" aria-label="thumbdown">👎</span></button>
                         </>
                         )}
                         {(user.username === comment.author ?
-                            <button className="delete-button" onClick={() =>this.deleteCommentHandler(comment.comment_id)}>❌</button> : '')}
+                            <button className="delete-button" onClick={() =>this.deleteCommentHandler(comment.comment_id)}><span role="img" aria-label="cross">❌</span></button> : '')}
             </div>
          );
     }

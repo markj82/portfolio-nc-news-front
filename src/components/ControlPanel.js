@@ -6,7 +6,7 @@ import logo2 from '../img/logo2.png'
 const ControlPanel = (props) => {
     return (
         <div className="control-panel-main">
-            <Link to="/" className="item link">   <img className="logo" src={logo2}/>   </Link>
+            <Link to="/" className="item link">   <img className="logo" alt="logo of northcoders" src={logo2}/>   </Link>
             <div className="topics-control-panel item">
             <div className="dropdown item link">
                 <button className="dropbtn">View By Topics</button>

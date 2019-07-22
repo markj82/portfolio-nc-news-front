@@ -83,8 +83,8 @@ class FullOneArticle extends React.Component {
 
                 {(user.username === "" ? <p>Only logged in users can vote and post comments</p> :
                 <>
-                <button disabled={isButtonUpDisabled} className="button-voteup-article" onClick={this.handleVoteUp}>Thumbs Up 👍</button>
-                <button disabled={isButtonDownDisabled} className="button-votedown-article" onClick={this.handleVoteDown}>Thumbs Down 👎</button>
+                <button disabled={isButtonUpDisabled} className="button-voteup-article" onClick={this.handleVoteUp}>Thumbs Up <span role="img" aria-label="thumbup">👍</span></button>
+                <button disabled={isButtonDownDisabled} className="button-votedown-article" onClick={this.handleVoteDown}>Thumbs Down <span role="img" aria-label="thumbdown">👎</span></button>
                 </>
                 )}
                 
