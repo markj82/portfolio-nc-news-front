@@ -1,6 +1,6 @@
 ## NorthCoders News - README
 
-Northcoders News is a single web page application (SPA), developed in two weeks sprint at Northcodors. The Front End is designed with React Library, while on Back End we've used PostgreSQL.
+Northcoders News is a single web page application (SPA), developed in two weeks sprint at Northcoders. The Front End is designed with React Library, while on Back End we've used PostgreSQL.
 
 Repository for Back End:
 
