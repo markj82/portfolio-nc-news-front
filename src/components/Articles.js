@@ -67,10 +67,10 @@ class Articles extends React.Component {
                         <Link
                             className="article-title" to={`/articles/${article.article_id}`}><h3>{article.title}</h3>
                         </Link>
-                            <p className="paragraph">{paragraphShortener(article.body)} <em><strong>
+                            <p className="paragraph">{paragraphShortener(article.body)} 
                         <Link
                             className="read-more" to={`/articles/${article.article_id}`}>...read more
-                        </Link></strong></em></p>
+                        </Link></p>
                     </div>
                 )
             })
