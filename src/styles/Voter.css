@@ -1,0 +1,12 @@
+.voter {
+    
+}
+
+.voter-button {
+    display: inline;
+    margin: 1em;
+}
+
+.votes-number {
+    display: inline;
+}
