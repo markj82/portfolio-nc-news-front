@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCommentsByArticleId, deleteComment, voteForComment } from '../api'
+import { getCommentsByArticleId, deleteComment } from '../api'
 import CommentAdder from './CommentAdder';
 import '../styles/Comments.css'
 
@@ -8,9 +8,7 @@ import CommentCard from './CommentCard';
 class Comments extends React.Component {
     state = {
         comments: [],
-        votesCount: 0,
-        isButtonUpDisabled: false,
-        isButtonDownDisabled: false
+        votesCount: 0
     }
 
     deleteSingleCommentHandler = commentId => {
@@ -20,30 +18,6 @@ class Comments extends React.Component {
                 return comm.comment_id !== commentId
             })
         }))
-    }
-
-    handleVote = (id, arrow) => {
-        const {votesCount} = this.state;
-        voteForComment(id, { inc_votes: arrow});
-        this.setState(prevState => ({
-            votesCount: prevState.votesCount + arrow,
-            comments: prevState.comments.map(comm => {
-                if (comm.comment_id === id) {
-                    return {...comm, votes: comm.votes + arrow}
-                } else return comm
-            })
-        }))
-        if (votesCount < 0) {
-            this.setState({
-                isButtonDownDisabled: true,
-                isButtonUpDisabled: false
-            })
-        } else {
-            this.setState({
-                isButtonUpDisabled: true,
-                isButtonDownDisabled: false
-            })
-        }
     }
    
     render() { 
@@ -86,11 +60,11 @@ class Comments extends React.Component {
        this.fetchComments()
     }
 
-    componentDidUpdate (prevProps, prevState) {
-        if (prevState.comments.comment_id !== this.state.comments.comment_id) {
-            this.fetchComments()
-        }
-    }
+    // componentDidUpdate (prevProps, prevState) {
+    //     if (prevState.comments.comment_id !== this.state.comments.comment_id) {
+    //         this.fetchComments()
+    //     }
+    // }
 }
  
 export default Comments;

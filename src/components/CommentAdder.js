@@ -5,7 +5,9 @@ import '../styles/CommentAdder.css'
 class CommentAdder extends React.Component {
     state = { 
         body: '',
-        emptyField: 'This field cannot be empty!',
+        warningField: 'This field cannot be empty!',
+        infoField: '',
+        addedComment: '',
         showField: false,
         isEnabled: false
     }
@@ -37,7 +39,8 @@ class CommentAdder extends React.Component {
                 this.props.addComment(res)
             })
         this.setState({
-            body: ''
+            body: '',
+            infoField: "Thanks for your comment!"
         })
     }
 
@@ -49,7 +52,8 @@ class CommentAdder extends React.Component {
                     Share your thoughts:
                     <textarea className="text-area-comment" type="text" name="body" id="body" placeholder="Post your comment here.." value={body} onChange={this.handleChange}/>
                     <button disabled={this.state.isDisabled} className="add-comment-button">Add a comment</button>
-                    {this.state.showField && <h4 className="empty-field">{this.state.emptyField}</h4>}
+                    {this.state.showField && <h4 className="empty-field">{this.state.warningField}</h4>}
+                    <h5>{this.state.infoField}</h5>
                 </label>
             </form>
          );
