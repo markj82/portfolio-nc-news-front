@@ -34,12 +34,7 @@ export const deleteComment = async comment_id => {
     return data;
 }
 
-export const voteForArticle = async (article_id, newVote) => {
-    const { data } = await axios.patch(`${BASE_URL}/api/articles/${article_id}`, newVote);
-    return data
-}
-
-export const voteForComment = async (comment_id, newVote) => {
-    const { data } = await axios.patch(`${BASE_URL}/api/comments/${comment_id}`, newVote);
+export const addVote = async (type, id, inc) => {
+    const {data} = await axios.patch(`${BASE_URL}/api/${type}s/${id}`, {inc_votes: inc})
     return data
 }
