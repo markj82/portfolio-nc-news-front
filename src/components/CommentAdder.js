@@ -8,8 +8,7 @@ class CommentAdder extends React.Component {
         warningField: 'This field cannot be empty!',
         infoField: '',
         addedComment: '',
-        showField: false,
-        isEnabled: false
+        showField: false
     }
 
     handleChange = e => {
