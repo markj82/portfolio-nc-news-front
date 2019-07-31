@@ -7,8 +7,7 @@ import CommentCard from './CommentCard';
 
 class Comments extends React.Component {
     state = {
-        comments: [],
-        votesCount: 0
+        comments: []
     }
 
     deleteSingleCommentHandler = commentId => {
