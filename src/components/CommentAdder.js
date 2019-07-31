@@ -31,17 +31,16 @@ class CommentAdder extends React.Component {
                 showField: true,
                 isDisabled: true
             })
-            return;
-        }
-       
-        postComment(id, {body, username: user.username})
-            .then(res => {
-                this.props.addComment(res)
+        } else {
+            postComment(id, {body, username: user.username})
+                .then(res => {
+                    this.props.addComment(res)
+                })
+            this.setState({
+                body: '',
+                infoField: "Thanks for your comment!"
             })
-        this.setState({
-            body: '',
-            infoField: "Thanks for your comment!"
-        })
+        }
     }
 
     render() { 
