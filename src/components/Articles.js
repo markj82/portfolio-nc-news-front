@@ -15,38 +15,41 @@ class Articles extends React.Component {
         err: null
     }
 
+
     orderAndSortByHandler = e => {
         const { value } = e.target;
-        if (value === "created_at_desc") {
-            this.setState({
+
+        const lookUpObj = {
+            "created_at_desc": {
                 sort_by: 'created_at',
                 order: 'desc'
-            })
-        } else if (value === "created_at_asc") {
-            this.setState({
+            },
+            "created_at_asc": {
                 sort_by: 'created_at',
                 order: 'asc'
-            })
-        } else if (value === "comment_count_desc") {
-            this.setState({
+            },
+            "comment_count_desc": {
                 sort_by: 'comment_count',
                 order: 'desc'
-            })
-        } else if (value === "comment_count_asc") {
-            this.setState({
+            },
+            "comment_count_asc": {
                 sort_by: 'comment_count',
                 order: 'asc'
-            })
-        } else if (value === "votes_desc") {
-            this.setState({
+            },
+            "votes_desc": {
                 sort_by: 'votes',
                 order: 'desc'
-            })
-        } else if (value === "votes_asc") {
-            this.setState({
+            },
+            "votes_asc": {
                 sort_by: 'votes',
                 order: 'asc'
-            })
+            }
+        }
+
+        for (let [key, val] of Object.entries(lookUpObj)) {
+            if ( value === key) {
+                this.setState(val)
+            }
         }
     }
 
