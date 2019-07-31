@@ -59,12 +59,6 @@ class Comments extends React.Component {
     componentDidMount() {
        this.fetchComments()
     }
-
-    // componentDidUpdate (prevProps, prevState) {
-    //     if (prevState.comments.comment_id !== this.state.comments.comment_id) {
-    //         this.fetchComments()
-    //     }
-    // }
 }
  
 export default Comments;
