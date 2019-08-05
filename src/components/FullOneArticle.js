@@ -26,14 +26,7 @@ class FullOneArticle extends React.Component {
         const { user } = this.props;
         
         if (this.state.err) return <ErrorPage details={this.state.err}/>
-        let buttonShowHide;
-        if(isCommentVisible) {
-            buttonShowHide = <button className="button-show-hide-comments" onClick={this.handleShowComments}>Hide all comments</button>
-        } else {
-            buttonShowHide = <button className="button-show-hide-comments" onClick={this.handleShowComments}>Show all comments</button>
-        }
-
-
+      
         return (
            
         oneArticle ? (
@@ -53,10 +46,7 @@ class FullOneArticle extends React.Component {
 
                 )}
                 
-                
-
-                {buttonShowHide}
-
+                <button onClick={this.handleShowComments} className="button-show-hide-comments">{isCommentVisible ? 'Hide' : 'Show'} all comments</button>
                 {this.state.isCommentVisible && <Comments user={user} id={this.props.id}/>}
             </div>
          ) : null
