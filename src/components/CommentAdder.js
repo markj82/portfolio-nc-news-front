@@ -49,9 +49,9 @@ class CommentAdder extends React.Component {
                 <label htmlFor="body">
                     Share your thoughts:
                     <textarea className="text-area-comment" type="text" name="body" id="body" placeholder="Post your comment here.." value={body} onChange={this.handleChange}/>
+                    <h5>{this.state.infoField}</h5>
                     <button disabled={this.state.isDisabled} className="add-comment-button">Add a comment</button>
                     {this.state.showField && <h4 className="empty-field">{this.state.warningField}</h4>}
-                    <h5>{this.state.infoField}</h5>
                 </label>
             </form>
          );
