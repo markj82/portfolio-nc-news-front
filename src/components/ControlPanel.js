@@ -3,9 +3,11 @@ import '../styles/ControlPanel.css';
 import { Link } from '@reach/router';
 import logo2 from '../img/logo2.png'
 
+// article, section, header, footer, nav and figure
+
 const ControlPanel = (props) => {
     return (
-        <div className="control-panel-main">
+        <nav className="control-panel-main">
             <Link to="/" className="item link">   <img className="logo" alt="logo of northcoders" src={logo2}/>   </Link>
             <div className="topics-control-panel item">
             <div className="dropdown item link">
@@ -21,7 +23,7 @@ const ControlPanel = (props) => {
                 Logged in as {props.user.username}
             </div>
             
-        </div>
+        </nav>
     );
 }
  
