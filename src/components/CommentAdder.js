@@ -33,6 +33,7 @@ class CommentAdder extends React.Component {
         } else {
             postComment(id, {body, username: user.username})
                 .then(res => {
+                    console.log(res, '<<<< res!!')
                     this.props.addComment(res)
                 })
             this.setState({
